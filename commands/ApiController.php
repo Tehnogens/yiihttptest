@@ -10,9 +10,6 @@ use app\models\City;
 class ApiController extends Controller
 {
     private $secret = '854E982F9BE2ADD7CCD1E79B86FD3';
-    /*private $url = 'https://jsonplaceholder.typicode.com';
-    private $actionCity = 'todos/1';*/
-
     private $url = 'https://digital.kt.ua';
     private $actionCity = 'api/test/cities';
     private $actionStreet = 'api/test/streets';
