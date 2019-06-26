@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             [
                 'attribute' => 'city_id',
-                'label' => 'Родительская категория',
+                'label' => 'Город',
                 'format' => 'text',
                 'content' => function($data){
                     return $data->getCityName();
