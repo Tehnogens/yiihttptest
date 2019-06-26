@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Exception;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "city".
@@ -17,6 +20,18 @@ use Yii;
  */
 class City extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -31,7 +46,7 @@ class City extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'ref', 'created_at', 'updated_at'], 'required'],
+            [['name', 'ref'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 50],
             [['ref'], 'string', 'max' => 40],
@@ -58,5 +73,13 @@ class City extends \yii\db\ActiveRecord
     public function getStreets()
     {
         return $this->hasMany(Street::className(), ['city_id' => 'id']);
+    }
+
+    public static function findModel($ref)
+    {
+        if(($model = self::findOne(['ref' => $ref])) !== null)
+            return $model;
+        else
+            return false;
     }
 }
