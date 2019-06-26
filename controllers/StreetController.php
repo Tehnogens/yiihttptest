@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use app\models\Street;
 use app\models\StreetSearch;
 use yii\web\Controller;
@@ -20,6 +21,17 @@ class StreetController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index'],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

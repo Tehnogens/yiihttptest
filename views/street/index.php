@@ -23,10 +23,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'city_id',
+            [
+                'attribute' => 'city_id',
+                'label' => 'Родительская категория',
+                'format' => 'text',
+                'content' => function($data){
+                    return $data->getCityName();
+                },
+                'filter' => \app\models\City::getCityName()
+            ],
             'name',
             'ref',
-            'created_at',
+            [
+                'attribute' => 'created_at',
+                'format' =>  ['date', 'dd.MM.YYYY HH:mm']
+            ],
             //'updated_at',
         ],
     ]); ?>

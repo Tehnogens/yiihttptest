@@ -85,4 +85,11 @@ class Street extends ActiveRecord
         else
             return false;
     }
+
+    public function getCityName()
+    {
+        $city = $this->city;
+
+        return $city ? $city->name : '';
+    }
 }

@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Exception;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "city".
@@ -81,5 +82,12 @@ class City extends \yii\db\ActiveRecord
             return $model;
         else
             return false;
+    }
+
+    public static function getCityName()
+    {
+        $city = self::find()->all();
+
+        return ArrayHelper::map($city, 'id', 'name');
     }
 }
