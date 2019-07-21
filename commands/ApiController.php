@@ -16,6 +16,7 @@ class ApiController extends Controller
 
     private $apiUrl = 'https://jsonplaceholder.typicode.com';
     private $actionPhoto = 'photos';
+    private $actionParam = 1;
 
     public $start ;
 
