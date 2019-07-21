@@ -14,6 +14,9 @@ class ApiController extends Controller
     private $actionCity = 'api/test/cities';
     private $actionStreet = 'api/test/streets';
 
+    private $apiUrl = 'https://jsonplaceholder.typicode.com';
+    private $actionPhoto = 'photos';
+
     public $start ;
 
     public function beforeAction($action)
@@ -31,7 +34,15 @@ class ApiController extends Controller
 
     public function actionIndex()
     {
-        $this->getCity();
+        //$this->getCity();
+    }
+
+    public function actionTest()
+    {
+        $client = new Client(['baseUrl' => $this->apiUrl]);
+        $response = $client->get($this->actionPhoto)->send();
+
+        echo $response;
     }
 
     private function getCity()
