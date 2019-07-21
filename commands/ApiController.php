@@ -16,6 +16,7 @@ class ApiController extends Controller
 
     private $apiUrl = 'https://jsonplaceholder.typicode.com';
     private $actionPhoto = 'photos';
+    private $actionUser = 'user';
     private $actionParam = 1;
 
     public $start ;
@@ -42,6 +43,14 @@ class ApiController extends Controller
     {
         $client = new Client(['baseUrl' => $this->apiUrl]);
         $response = $client->get($this->actionPhoto)->send();
+
+        echo $response;
+    }
+    
+    public function actionTestUser()
+    {
+        $client = new Client(['baseUrl' => $this->apiUrl]);
+        $response = $client->get($this->actionUser)->send();
 
         echo $response;
     }
